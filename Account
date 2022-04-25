@@ -2,11 +2,11 @@ public class Account {
     /*
     *
     *
-    *
+    * Fields and other methods()
     *
     *
     */
-    
+
     //in Account class, where "this" refers to the Account calling applyFilters()
     public void applyFilters(boolean favoriteRoutesOnly, boolean favoriteStopsOnly, boolean availableBikeRacksOnly, boolean nearbyStopsOnly, boolean hideIfBusFull ) {
         clearStopsFromMap(); // remove all stops from map
@@ -66,4 +66,13 @@ public class Account {
         display(bussesRemaining);
         
     }
+    /*
+    *
+    *
+    *
+    * Other methods()
+    *
+    *
+    *
+    */
 }
