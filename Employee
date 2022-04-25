@@ -8,12 +8,13 @@ public class Employee {
     *
     *
     */
-
+    
+// in Employee class, where "this" refers to the Employee calling tradeShiftWithEmployee(Shift s)
+// s is the specified shift that the employee is trying to take ("trade" with another employee)
 public Shift tradeShiftWithEmployee(Shift s) {
     // Check if the employee is already working during the shift s
     if (isScheduled(this, getStartTime(s), getEndTime(s)){
-        notifyEmployee(this, “You are already working during the hours of  
-            this shift, you may not trade with this shift.”)
+        notifyEmployee(this, “You are already working during the hours of this shift, you may not trade with this shift.”)
     }
     // Check if the shift is still available, another employee could have traded for the given shift while another employee was in the process of trading the same shift
     else if (shiftAvailable(s)) {
@@ -31,14 +32,12 @@ public Shift tradeShiftWithEmployee(Shift s) {
                 this.shifts.add(s);
             }
             else {
-            notifyEmployee(this, “Shift trade has been denied by 
-               management.”);
+            notifyEmployee(this, “Shift trade has been denied by management.”);
             }
         }
     }
     else {
-        notifyEmployee(this, “This shift is no longer available for trade, 
-                please refresh the page for available shifts.”)
+        notifyEmployee(this, “This shift is no longer available for trade, please refresh the page for available shifts.”)
     }
     return s;
 }
