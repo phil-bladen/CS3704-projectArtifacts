@@ -1,4 +1,14 @@
-// in Employee class, where "this" refers to the Employee calling tradeShiftWithEmployee(Shift s)
+public class Employee {
+    /*
+    *
+    *   
+    *   Other methods()
+    *
+    *
+    *
+    *
+    */
+
 public Shift tradeShiftWithEmployee(Shift s) {
     // Check if the employee is already working during the shift s
     if (isScheduled(this, getStartTime(s), getEndTime(s)){
@@ -31,4 +41,15 @@ public Shift tradeShiftWithEmployee(Shift s) {
                 please refresh the page for available shifts.”)
     }
     return s;
+}
+
+/*
+    *
+    *
+    *   Other methods()
+    *
+    *
+    *
+    */
+
 }
