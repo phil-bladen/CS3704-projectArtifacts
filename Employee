@@ -1,0 +1,34 @@
+// in Employee class, where "this" refers to the Employee calling tradeShiftWithEmployee(Shift s)
+public Shift tradeShiftWithEmployee(Shift s) {
+    // Check if the employee is already working during the shift s
+    if (isScheduled(this, getStartTime(s), getEndTime(s)){
+        notifyEmployee(this, “You are already working during the hours of  
+            this shift, you may not trade with this shift.”)
+    }
+    // Check if the shift is still available, another employee could have traded for the given shift while another employee was in the process of trading the same shift
+    else if (shiftAvailable(s)) {
+        lockShift(s);  // Lock the shift so no other employee can take it 
+        // Make sure the employee isn’t going to work overtime (40+ hours)
+        if (hoursScheduled(this, getCurrentWeek()) + s.totalTime <= 40) {
+            s.employeeID = this.id;
+            this.shifts.add(s);
+        }
+        // If the employee is going to work overtime, notify the manager for approval
+        else {
+            notifyTradeManager(this, s);
+            if (managerApprovedShiftTrade(this, s)){
+                s.employeeID = this.id;
+                this.shifts.add(s);
+            }
+            else {
+            notifyEmployee(this, “Shift trade has been denied by 
+               management.”);
+            }
+        }
+    }
+    else {
+        notifyEmployee(this, “This shift is no longer available for trade, 
+                please refresh the page for available shifts.”)
+    }
+    return s;
+}
