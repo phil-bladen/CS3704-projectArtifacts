@@ -1,0 +1,69 @@
+public class Account {
+    /*
+    *
+    *
+    *
+    *
+    *
+    */
+    
+    //in Account class, where "this" refers to the Account calling applyFilters()
+    public void applyFilters(boolean favoriteRoutesOnly, boolean favoriteStopsOnly, boolean availableBikeRacksOnly, boolean nearbyStopsOnly, boolean hideIfBusFull ) {
+        clearStopsFromMap(); // remove all stops from map
+        clearRoutesFromMap(); // remove all routes from map
+        clearBussesFromMap(); // remove all busses from map
+
+        BusRoute[] routesRemaining = getAllRoutes();
+        BusStop[] stopsRemaining = getAllStops();
+        List<Bus> bussesRemaining = NULL;
+
+        if (favoriteRoutesOnly) {
+            for (int i = 0; i < routesRemaining.length; i++) {
+                if (!this.favoriteRoutes.contains(routesRemaining[i]) ) {
+                    routesRemaining[i] = NULL;
+                }
+            }
+        }
+
+        if (favoriteStopsOnly) {
+            for (int i = 0; i < stopsRemaining.length; i++) {
+                if (!this.favoriteStops.contains(stopsRemaining[i]) ) {
+                    stopsRemaining[i] = NULL;
+                }
+            }
+        }
+
+        if(nearbyStopsOnly) {
+            for (int i = 0; i < stopsRemaining.length; i++) {
+                if (!isNearby(stopsRemaining[i]) {
+                    stopsRemaining[i] = NULL;
+                }
+            }
+        }
+
+        if (availableBikeRacksOnly) {
+            for (int i = 0; i < routesRemaining.length; i++) {
+                if (routesRemaining[i] != NULL) { 
+                    for (int j = 0; j < routesRemaining[i].busses.length; j++) {
+                        if (routesRemaining[i].busses[j].bikeRackAvailable) {
+                            bussesRemaining.add(routesRemaining[i].busses[j]);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (hideIfBusFull) {
+            for (int i = 0; i < bussesRemaining.length; i++) {
+                if (bussesRemaining.get(i).capacity == 1.00) {
+                    bussesRemaining.remove(i);
+                }
+            }
+        }
+
+        display(routesRemaining);
+        display(stopsRemaining);
+        display(bussesRemaining);
+        
+    }
+}

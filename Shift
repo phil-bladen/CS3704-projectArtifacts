@@ -1,0 +1,33 @@
+public class Shift {
+    /*
+    *
+    *   
+    *   Other methods()
+    *
+    *
+    *
+    *
+    */
+
+    // in Shift class, where "this" refers to the Shift calling produceRecord()
+    public Record produceRecord() {
+        Record recordProduced = new Record();
+        recordProduced.employeeID = this.employeeID;
+        recordProduced.payPeriod = dateToPayPeriod(this.date); // get pay period from shift date
+        recordProduced.hoursWorked = (totalTime / 3600); // convert time to hours
+
+        recordProduced.id = hash(recordProduced) // use Record info to create hashed ID
+        
+        return recordProduced;
+    }
+
+    /*
+    *
+    *
+    *   Other methods()
+    *
+    *
+    *
+    */
+
+}
