@@ -1,0 +1,36 @@
+public class Manager {
+
+  // in Manager class
+  // allEmployees is all employees and dates is the range of dates of the schedule
+  public Schedule createSchedule(Employee[] allEmployees, int[] dates) {
+    ArrayList<Employee> availableEmployees = new ArrayList<Employee>();
+    ArrayList<Shift> shifts = new ArrayList<Shift>();
+
+    // check which employees are available this week
+    for (int i = 0; i < allEmployees.length; i++) {
+      if (allEmployees[i].getAvailbility().contains(true)) {
+        availableEmployees.add(allEmployees[i]);
+      }
+    }
+
+    // give shifts to available employees
+    for (int j = 0; j < availableEmployees.length; j++) {
+        // if the employee is available then give them a shift
+        if (availableEmployees.indexOf(j).isAvailable(dates)) {
+            // find available shift time with given dates
+            int[] shiftDates = findShift(dates, availableEmployees.toArray());
+            // create shift and add them to final shift list
+            Shift tempShift = new Shift(shiftDates, availableEmployees.indexOf(j));
+            shifts.add(tempShift);
+        }
+    }
+
+    // notify employees that more shifts are needed
+    if (shifts.size() < minShifts) {
+        notifyEmployees("More shifts are needed! Please check the schedule and submit your updated availability if possible");
+    }
+
+    // use shifts and employees to create a new schedule
+    return new Schedule(shifts.toArray(), availableEmployees.toArray());
+  }
+}
