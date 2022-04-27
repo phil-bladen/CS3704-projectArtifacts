@@ -1,6 +1,4 @@
 public class Manager {
-
-  // in Manager class
   // allEmployees is all employees and dates is the range of dates of the schedule
   public Schedule createSchedule(Employee[] allEmployees, int[] dates) {
     ArrayList<Employee> availableEmployees = new ArrayList<Employee>();
@@ -33,4 +31,19 @@ public class Manager {
     // use shifts and employees to create a new schedule
     return new Schedule(shifts.toArray(), availableEmployees.toArray());
   }
+
+  public void payEmployees(Employee employee, Record employeeRecord) {
+
+    double wage = employee.getPayRate(); // get employee's pay rate
+    int hoursWorked = employeeRecord.getHoursWorked(); // get hours worked from employee record
+
+    double pay = wage * hoursWorked; // calculate pay period for employee
+    pay = pay - (pay * .18); // subtract out estimate 18% tax
+
+    int employeeNum = employee.getBankRoutingNum(); // get employee routing number
+
+    // use employee routing number to access employee account to deposit pay for
+    // that pay period
+
+}
 }
